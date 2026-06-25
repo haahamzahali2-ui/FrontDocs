@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Helping Hands — Documents and links </title>
   <style>
+    .topbar-clock-time {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  text-align: center;
+}
+.topbar-clock-date {
+  font-size: 10px; font-weight: 400;
+  color: rgba(201, 168, 76, 0.55);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 3px;
+}
 /* ═══════════════════════════════════════════════════
    HELPING HANDS CLINIC — DOCUMENT PORTAL
    styles.css  |  v1.0
@@ -1138,8 +1153,10 @@ ul, ol { list-style: none; }
       </div>
     </div>
 
-    <div class="topbar-center">Document Portal</div>
-
+   <div class="topbar-center">
+  <div class="topbar-clock-time" id="topbarClock">--:--</div>
+  <div class="topbar-clock-date" id="topbarDate">---</div>
+</div>
     <div class="topbar-right">
       <div class="topbar-stat">
         <div class="topbar-stat-val" id="stat-total">—</div>
@@ -1498,6 +1515,15 @@ ul, ol { list-style: none; }
        JAVASCRIPT
   ═══════════════════════════════════════════ -->
   <script>
+    function updateClock() {
+  const now = new Date();
+  document.getElementById('topbarClock').textContent =
+    now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+  document.getElementById('topbarDate').textContent =
+    now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+}
+updateClock();
+setInterval(updateClock, 1000);
     // ──────────────────────────────────────────
     // STATE
     // ──────────────────────────────────────────
